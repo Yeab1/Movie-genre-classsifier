@@ -2,6 +2,69 @@ import os
 import re
 import requests
 
+import graphics
+from graphics import *
+class GenreWindow:
+    def __init__(self, height, width, type):
+        self.height = height
+        self.width = width
+        self.type = type
+    def setHeight(self, height):
+        self.height = height
+    def setWidth(self, width):
+        self.width = width
+    def setType(self, type):
+        self.type = type
+    def getHeight(self):
+        return self.height
+    def getWidth(self):
+        return self.width
+    def getType(self):
+        return self.type
+    def drawWindow(self):
+        #set up the screen and the background
+        win = GraphWin("Genre Classifier", self.width, self.height)
+        background = Rectangle(Point(0, 0), Point(self.width, self.height))
+        background.setFill("#BDB76B")
+        background.setOutline("#BDB76B")
+        background.draw(win)
+        #draw all the details.
+        #draw cards for every genre
+        #set initial points for the first card
+        #also set the height change and width change to make it more general.
+        Xinit = 0.02*self.width
+        Yinit = 0.16*self.height
+        Xchange = 0.16*self.width
+        Ychange = 0.2*self.height
+        XinitText = Xinit + 0.5*Xchange
+        YinitText = Yinit + 0.5*Ychange
+        #draw a table with 6 columns and 3 rows
+        #Write the text in the boxes.
+        #make a list of all the words to draw in the boxes.
+        WordList = ["action", "comedy", "adventure","animation","documentary","horror","romance","Sci-fi","music","thriller","western","adventure","war","crime","fantasy","family","drama","mystery"]
+        for j in range(3):
+            for i in range(6):
+                #make the texts in the boxes.
+                textWord = WordList[i+j]
+                text = Text(Point(XinitText, YinitText), textWord)
+                card = Rectangle(Point(Xinit, Yinit), Point(Xinit + Xchange, Yinit + Ychange))
+                card.setFill("#F0E68C")
+                Xinit += Xchange
+                XinitText += Xchange
+                card.draw(win)
+                text.draw(win)
+
+            Xinit = 0.02*self.width
+            XinitText = Xinit + 0.5 * Xchange
+            Yinit += Ychange
+            YinitText += Ychange
+
+
+#create a window
+win = GenreWindow(500, 1000, 0)
+win.drawWindow()
+
+
 #apikey = 08d24012d752c9e551f35a3516460668
 q = input("What kind of movie would you like to watch?")
 mn = open("moviename.txt", "w")
@@ -22,10 +85,13 @@ crime = open("crime.txt", "w")
 fantasy = open("fantasy.txt", "w")
 family = open("family.txt", "w")
 drama = open("drama.txt", "w")
-mystery = open("drama.txt", "w")
+mystery = open("mystery.txt", "w")
 
-for root, dirs, files in os.walk(r"C:\\users\\yeab\\desktop\\project\\movies for project"):
+
+#
+for root, dirs, files in os.walk(r"C:\Users\Yeab\Desktop\desktop\summer movies"):
     for file in files:
+        #print(file)
         if file.endswith(".mp4") or file.endswith(".avi") or file.endswith(".mkv") or file.endswith(".wav") or file.endswith(".mov") or file.endswith(".flv"):
             global stringdir
 
@@ -38,8 +104,12 @@ for root, dirs, files in os.walk(r"C:\\users\\yeab\\desktop\\project\\movies for
                 file = file.replace(".", " ")
                 sFile = file.split(" ")
                 listfile = list(sFile)
-                j = file[0:file.index("2")]
-
+                try:
+                    j = file[0:file.index("2")]
+                    #j = file[0:file.index("1")]
+                except:
+                    pass
+                #get rid of anything that comes after a (.
                 for item in j:
                     if item[0] == "(":
                         j = j[0:j.index(item)]
@@ -148,6 +218,3 @@ for root, dirs, files in os.walk(r"C:\\users\\yeab\\desktop\\project\\movies for
                         #print(j)
                 else:
                     print(j + "is not in the Database")
-
-                #mn.write(j)
-                #mn.write("\n")"""
