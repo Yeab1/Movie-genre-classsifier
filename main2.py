@@ -22,47 +22,82 @@ class GenreWindow:
     def getType(self):
         return self.type
     def drawWindow(self):
-        #set up the screen and the background
+        if self.type == 0:
+            #set up the screen and the background
+            win = GraphWin("Genre Classifier", self.width, self.height)
+            background = Rectangle(Point(0, 0), Point(self.width, self.height))
+            background.setFill("#BDB76B")
+            background.setOutline("#BDB76B")
+            background.draw(win)
+            #draw all the details.
+            #draw cards for every genre
+            #set initial points for the first card
+            #also set the height change and width change to make it more general.
+            Xinit = 0.02*self.width
+            Yinit = 0.16*self.height
+            Xchange = 0.16*self.width
+            Ychange = 0.2*self.height
+            XinitText = Xinit + 0.5*Xchange
+            YinitText = Yinit + 0.5*Ychange
+            #draw a table with 6 columns and 3 rows
+            #Write the text in the boxes.
+            #make a list of all the words to draw in the boxes.
+            WordList = ["action", "comedy", "adventure","animation","documentary","horror","romance","Sci-fi","music","thriller","western","adventure","war","crime","fantasy","family","drama","mystery"]
+            valueControl = 0
+            for j in range(3):
+                try:
+                    x = valueControl
+                    for i in range(x, x+6):
+                        #make the texts in the boxes.
+                        textWord = WordList[valueControl]
+                        text = Text(Point(XinitText, YinitText), textWord)
+                        card = Rectangle(Point(Xinit, Yinit), Point(Xinit + Xchange, Yinit + Ychange))
+                        card.setFill("#F0E68C")
+                        Xinit += Xchange
+                        XinitText += Xchange
+                        card.draw(win)
+                        text.draw(win)
+                        valueControl += 1
+                except:
+                    pass
+                Xinit = 0.02*self.width
+                XinitText = Xinit + 0.5 * Xchange
+                Yinit += Ychange
+                YinitText += Ychange
+    #function to draw a space to put the names of all the movies on after search
+    def drawBlankSheet(self, lst):
         win = GraphWin("Genre Classifier", self.width, self.height)
         background = Rectangle(Point(0, 0), Point(self.width, self.height))
         background.setFill("#BDB76B")
         background.setOutline("#BDB76B")
         background.draw(win)
-        #draw all the details.
-        #draw cards for every genre
-        #set initial points for the first card
-        #also set the height change and width change to make it more general.
-        Xinit = 0.02*self.width
-        Yinit = 0.16*self.height
-        Xchange = 0.16*self.width
-        Ychange = 0.2*self.height
-        XinitText = Xinit + 0.5*Xchange
-        YinitText = Yinit + 0.5*Ychange
-        #draw a table with 6 columns and 3 rows
-        #Write the text in the boxes.
-        #make a list of all the words to draw in the boxes.
-        WordList = ["action", "comedy", "adventure","animation","documentary","horror","romance","Sci-fi","music","thriller","western","adventure","war","crime","fantasy","family","drama","mystery"]
-        for j in range(3):
-            for i in range(6):
-                #make the texts in the boxes.
-                textWord = WordList[i+j]
-                text = Text(Point(XinitText, YinitText), textWord)
-                card = Rectangle(Point(Xinit, Yinit), Point(Xinit + Xchange, Yinit + Ychange))
-                card.setFill("#F0E68C")
-                Xinit += Xchange
-                XinitText += Xchange
-                card.draw(win)
-                text.draw(win)
 
-            Xinit = 0.02*self.width
-            XinitText = Xinit + 0.5 * Xchange
-            Yinit += Ychange
-            YinitText += Ychange
-
+        Xinit = 0.15 * self.width
+        Yinit = 0.16 * self.height
+        Xchange = 0.3 * self.width
+        Ychange = 25
+        if len(lst) < 15:
+            lcv = 1
+        elif len(lst) >= 15 and len(lst) < 30:
+            lcv = 2
+        elif len(lst) >= 30:
+            lcv = 3
+        for i in range(lcv):
+            try:
+                for j in range(15):
+                    text = Text(Point(Xinit, Yinit), lst[i+j])
+                    text.draw(win)
+                    Yinit+=Ychange
+                Xinit+=Xchange
+                Yinit = 0.16*self.height
+            except:
+                pass
 
 #create a window
 win = GenreWindow(500, 1000, 0)
 win.drawWindow()
+lst = ["Movie 1","Movie could be this long", "she", "might be this long too", "It works", "baam", "this was fast", "not that hard", "gotta go to django quick", "gotta get done with this ASAP","sfg","asdfsd","asdfs","asdfsd","sdfsd","sdfs","adsfs","asdfs","sadfsa","fdghf","werttwe","ghjfh","asdf","wertew","nmghn","cvbcv","cvcvb"]
+#win.drawBlankSheet(lst)
 
 
 #apikey = 08d24012d752c9e551f35a3516460668
