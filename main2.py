@@ -82,22 +82,24 @@ class GenreWindow:
             lcv = 2
         elif len(lst) >= 30:
             lcv = 3
+        x = 0
         for i in range(lcv):
             try:
                 for j in range(15):
-                    text = Text(Point(Xinit, Yinit), lst[i+j])
+                    text = Text(Point(Xinit, Yinit), lst[x+j])
                     text.draw(win)
                     Yinit+=Ychange
-                Xinit+=Xchange
+                x += 15
+                Xinit += Xchange
                 Yinit = 0.16*self.height
             except:
                 pass
 
 #create a window
 win = GenreWindow(500, 1000, 0)
-win.drawWindow()
+#win.drawWindow()
 lst = ["Movie 1","Movie could be this long", "she", "might be this long too", "It works", "baam", "this was fast", "not that hard", "gotta go to django quick", "gotta get done with this ASAP","sfg","asdfsd","asdfs","asdfsd","sdfsd","sdfs","adsfs","asdfs","sadfsa","fdghf","werttwe","ghjfh","asdf","wertew","nmghn","cvbcv","cvcvb"]
-#win.drawBlankSheet(lst)
+win.drawBlankSheet(lst)
 
 
 #apikey = 08d24012d752c9e551f35a3516460668
