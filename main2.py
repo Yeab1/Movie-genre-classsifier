@@ -102,15 +102,9 @@ class GenreWindow:
             except:
                 pass
 
+def app(win, q):
 
-
-def app(win):
-    '''click = win.checkM()
-    clickX = click.getX()
-    clickY = click.getY()'''
-    #print(win.checkM)
     #apikey = 08d24012d752c9e551f35a3516460668
-    q = input("What kind of movie would you like to watch?")
     mn = open("moviename.txt", "w")
     comedy = open("comedy.txt", "w")
     action = open("action.txt", "w")
@@ -181,7 +175,7 @@ def app(win):
                         innermost = search[0]
                         #print(innermost)
                         if innermost.get('genre_ids') == None:
-                            print("Sorry, I do not know the Genre of this movie")
+                            print("Genre Not Found!")
                         else:
                             #print(jsonobj['results'][0]['genre_ids'])
                             string_genre = str(jsonobj['results'][0]['genre_ids'])
@@ -282,50 +276,69 @@ def mouseClick(win, click):
     YinitText = Yinit + 0.5 * Ychange
 
     if(Xinit < x < Xinit + Xchange and Yinit < y < Yinit + Ychange):
-        return "action"
+        app(win, "action")
+        return False
     if(Xinit + Xchange < x < Xinit + 2*Xchange and Yinit < y < Yinit + Ychange):
-        return "comedy"
+        app(win, "comedy")
+        return False
     if(Xinit + 2*Xchange < x < Xinit + 3*Xchange and Yinit < y < Yinit + Ychange):
-        return "adventure"
+        app(win, "adventure")
+        return False
     if(Xinit + 3*Xchange < x < Xinit + 4*Xchange and Yinit < y < Yinit + Ychange):
-        return "animation"
+        app(win, "animation")
+        return False
     if(Xinit + 4*Xchange < x < Xinit + 5*Xchange and Yinit < y < Yinit + Ychange):
-        return "documentary"
+        app(win, "documentary")
+        return False
     if(Xinit + 5*Xchange < x < Xinit + 6*Xchange and Yinit < y < Yinit + Ychange):
-        return "horror"
+        app(win, "horror")
+        return False
     if (Xinit < x < Xinit + Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        return "romance"
+        app(win, "romance")
+        return False
     if (Xinit + Xchange < x < Xinit + 2 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        return "scifi"
+        app(win, "scifi")
+        return False
     if (Xinit + 2 * Xchange < x < Xinit + 3 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        return "music"
+        app(win, "music")
+        return False
     if (Xinit + 3 * Xchange < x < Xinit + 4 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        return "thriller"
+        app(win, "thriller")
+        return False
     if (Xinit + 4 * Xchange < x < Xinit + 5 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        return "western"
+        app(win, "western")
+        return False
     if (Xinit + 5 * Xchange < x < Xinit + 6 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        return "adventure"
+        app(win, "adventure")
+        return False
     if (Xinit < x < Xinit + Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        return "war"
+        app(win, "war")
+        return False
     if (Xinit + Xchange < x < Xinit + 2 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        return "crime"
+        app(win, "crime")
+        return False
     if (Xinit + 2 * Xchange < x < Xinit + 3 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        return "fantacy"
+        app(win, "fantacy")
+        return False
     if (Xinit + 3 * Xchange < x < Xinit + 4 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        return "family"
+        app(win, "family")
+        return False
     if (Xinit + 4 * Xchange < x < Xinit + 5 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        return "drama"
+        app(win, "drama")
+        return False
     if (Xinit + 5 * Xchange < x < Xinit + 6 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        return "mystery"
+        app(win, "mystery")
+        return False
+    else:
+        pass
 
-
-#create a window'
+#create a window
 win = GenreWindow(500, 1000, 0)
 window = win.drawWindow()
-while True:
+bool = True
+while bool:
     click = window.checkMouse()
     if(click!=None):
-        mouseClick(window, click)
-app(win)
+        bool = mouseClick(window, click)
 lst = ["Movie 1","Movie could be this long", "she", "might be this long too", "It works", "baam", "this was fast", "not that hard", "gotta go to django quick", "gotta get done with this ASAP","sfg","asdfsd","asdfs","asdfsd","sdfsd","sdfs","adsfs","asdfs","sadfsa","fdghf","werttwe","ghjfh","asdf","wertew","nmghn","cvbcv","cvcvb"]
 win.drawBlankSheet(lst)
