@@ -263,9 +263,61 @@ def app(win):
                             #print(j)
                     else:
                         print(j + "is not in the Database")
-
+'''
+Xinit = 0.02*self.width
+Yinit = 0.16*self.height
+Xchange = 0.16*self.width
+Ychange = 0.2*self.height
+XinitText = Xinit + 0.5*Xchange
+YinitText = Yinit + 0.5*Ychange
+'''
 def mouseClick(win, click):
-    pass
+    x = click.getX()
+    y = click.getY()
+    Xinit = 0.02*win.getWidth()
+    Yinit = 0.16*win.getHeight()
+    Xchange = 0.16 * win.getWidth()
+    Ychange = 0.2 * win.getHeight()
+    XinitText = Xinit + 0.5 * Xchange
+    YinitText = Yinit + 0.5 * Ychange
+
+    if(Xinit < x < Xinit + Xchange and Yinit < y < Yinit + Ychange):
+        return "action"
+    if(Xinit + Xchange < x < Xinit + 2*Xchange and Yinit < y < Yinit + Ychange):
+        return "comedy"
+    if(Xinit + 2*Xchange < x < Xinit + 3*Xchange and Yinit < y < Yinit + Ychange):
+        return "adventure"
+    if(Xinit + 3*Xchange < x < Xinit + 4*Xchange and Yinit < y < Yinit + Ychange):
+        return "animation"
+    if(Xinit + 4*Xchange < x < Xinit + 5*Xchange and Yinit < y < Yinit + Ychange):
+        return "documentary"
+    if(Xinit + 5*Xchange < x < Xinit + 6*Xchange and Yinit < y < Yinit + Ychange):
+        return "horror"
+    if (Xinit < x < Xinit + Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
+        return "romance"
+    if (Xinit + Xchange < x < Xinit + 2 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
+        return "scifi"
+    if (Xinit + 2 * Xchange < x < Xinit + 3 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
+        return "music"
+    if (Xinit + 3 * Xchange < x < Xinit + 4 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
+        return "thriller"
+    if (Xinit + 4 * Xchange < x < Xinit + 5 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
+        return "western"
+    if (Xinit + 5 * Xchange < x < Xinit + 6 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
+        return "adventure"
+    if (Xinit < x < Xinit + Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
+        return "war"
+    if (Xinit + Xchange < x < Xinit + 2 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
+        return "crime"
+    if (Xinit + 2 * Xchange < x < Xinit + 3 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
+        return "fantacy"
+    if (Xinit + 3 * Xchange < x < Xinit + 4 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
+        return "family"
+    if (Xinit + 4 * Xchange < x < Xinit + 5 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
+        return "drama"
+    if (Xinit + 5 * Xchange < x < Xinit + 6 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
+        return "mystery"
+
 
 #create a window'
 win = GenreWindow(500, 1000, 0)
