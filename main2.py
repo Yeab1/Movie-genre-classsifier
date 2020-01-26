@@ -23,10 +23,6 @@ class GenreWindow:
         return self.type
     def getWindow(self):
         return self
-    def checkM(self):
-        x = self.checkMouse()
-        print(x)
-        return x
     def drawWindow(self):
         if self.type == 0:
             #set up the screen and the background
@@ -48,7 +44,7 @@ class GenreWindow:
             #draw a table with 6 columns and 3 rows
             #Write the text in the boxes.
             #make a list of all the words to draw in the boxes.
-            WordList = ["action", "comedy", "adventure","animation","documentary","horror","romance","Sci-fi","music","thriller","western","adventure","war","crime","fantasy","family","drama","mystery"]
+            WordList = ["action", "comedy", "adventure","animation","documentary","horror","romance","Sci-fi","music","thriller","western","all","war","crime","fantasy","family","drama","mystery"]
             valueControl = 0
             for j in range(3):
                 try:
@@ -101,8 +97,13 @@ class GenreWindow:
                 Yinit = 0.16*self.height
             except:
                 pass
+        # close button
+        close = Rectangle(Point(self.width - 50, 0), Point(self.width, 40))
+        close.setFill("red")
+        close.draw(win)
+        return win
 
-def app(win, q):
+def app(win, lst, q):
 
     #apikey = 08d24012d752c9e551f35a3516460668
     mn = open("moviename.txt", "w")
@@ -117,7 +118,6 @@ def app(win, q):
     music = open("music.txt", "w")
     thriller = open("thriller.txt", "w")
     western = open("western.txt", "w")
-    adventure = open("adventure.txt", "w")
     war = open("war.txt", "w")
     crime = open("crime.txt", "w")
     fantasy = open("fantasy.txt", "w")
@@ -184,88 +184,98 @@ def app(win, q):
 
                             if '28' in string_genre and q == "action":
                                 print(j)
+                                lst.append(j)
                                 action.write(j)
                                 action.write("\n")
                             if '16' in string_genre and q == "animation":
                                 print(j)
+                                lst.append(j)
                                 animation.write(j)
                                 animation.write("\n")
                             if '99' in string_genre and q == "documentary":
                                 print(j)
+                                lst.append(j)
                                 documentary.write(j)
                                 documentary.write("\n")
                             if '18' in string_genre and q == "drama":
                                 print(j)
+                                lst.append(j)
                                 drama.write(j)
                                 drama.write("\n")
                             if '10751' in string_genre and q == "family":
                                 print(j)
+                                lst.append(j)
                                 family.write(j)
                                 family.write("\n")
                             if '14' in string_genre and q == "fantasy":
                                 print(j)
+                                lst.append(j)
                                 fantasy.write(j)
                                 fantasy.write("\n")
                             if '36' in string_genre and q == "history":
                                 print(j)
+                                lst.append(j)
                                 history.write(j)
                                 history.write("\n")
                             if '35' in string_genre and q == "comedy":
                                 print(j)
+                                lst.append(j)
                                 comedy.write(j)
                                 comedy.write("\n")
                             if '10752' in string_genre and q == "war":
                                 print(j)
+                                lst.append(j)
                                 war.write(j)
                                 war.write("\n")
                             if '80' in string_genre and q == "crime":
                                 print(j)
+                                lst.append(j)
                                 crime.write(j)
                                 crime.write("\n")
                             if '10402' in string_genre and q == "music":
                                 print(j)
+                                lst.append(j)
                                 music.write(j)
                                 music.write("\n")
                             if '9648' in string_genre and q == "mystery":
                                 print(j)
+                                lst.append(j)
                                 mystery.write(j)
                                 mystery.write("\n")
                             if '10749' in string_genre and q == "romance":
                                 print(j)
+                                lst.append(j)
                                 romance.write(j)
                                 romance.write("\n")
                             if '878' in string_genre and q == "scifi":
                                 print(j)
+                                lst.append(j)
                                 scifi.write(j)
                                 scifi.write("\n")
                             if '27' in string_genre and q == "horror":
                                 print(j)
+                                lst.append(j)
                                 horror.write(j)
                                 horror.write("\n")
                             if '53' in string_genre and q == "thriller":
                                 print(j)
+                                lst.append(j)
                                 thriller.write(j)
                                 thriller.write("\n")
                             if '37' in string_genre and q == "western":
                                 print(j)
+                                lst.append(j)
                                 western.write(j)
                                 western.write("\n")
                             if '12' in string_genre and q == "adventures":
                                 print(j)
+                                lst.append(j)
                                 adventure.write(j)
                                 adventure.write("\n")
-                            #print(j)
                     else:
                         print(j + "is not in the Database")
-'''
-Xinit = 0.02*self.width
-Yinit = 0.16*self.height
-Xchange = 0.16*self.width
-Ychange = 0.2*self.height
-XinitText = Xinit + 0.5*Xchange
-YinitText = Yinit + 0.5*Ychange
-'''
-def mouseClick(win, click):
+
+def mouseClick(win, lst, click):
     x = click.getX()
     y = click.getY()
     Xinit = 0.02*win.getWidth()
@@ -276,58 +286,58 @@ def mouseClick(win, click):
     YinitText = Yinit + 0.5 * Ychange
 
     if(Xinit < x < Xinit + Xchange and Yinit < y < Yinit + Ychange):
-        app(win, "action")
+        app(win, lst, "action")
         return False
     if(Xinit + Xchange < x < Xinit + 2*Xchange and Yinit < y < Yinit + Ychange):
-        app(win, "comedy")
+        app(win, lst, "comedy")
         return False
     if(Xinit + 2*Xchange < x < Xinit + 3*Xchange and Yinit < y < Yinit + Ychange):
-        app(win, "adventure")
+        app(win, lst,"adventure")
         return False
     if(Xinit + 3*Xchange < x < Xinit + 4*Xchange and Yinit < y < Yinit + Ychange):
-        app(win, "animation")
+        app(win,lst, "animation")
         return False
     if(Xinit + 4*Xchange < x < Xinit + 5*Xchange and Yinit < y < Yinit + Ychange):
-        app(win, "documentary")
+        app(win, lst,"documentary")
         return False
     if(Xinit + 5*Xchange < x < Xinit + 6*Xchange and Yinit < y < Yinit + Ychange):
-        app(win, "horror")
+        app(win, lst,"horror")
         return False
     if (Xinit < x < Xinit + Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        app(win, "romance")
+        app(win,lst, "romance")
         return False
     if (Xinit + Xchange < x < Xinit + 2 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        app(win, "scifi")
+        app(win,lst, "scifi")
         return False
     if (Xinit + 2 * Xchange < x < Xinit + 3 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        app(win, "music")
+        app(win, lst,"music")
         return False
     if (Xinit + 3 * Xchange < x < Xinit + 4 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        app(win, "thriller")
+        app(win, lst,"thriller")
         return False
     if (Xinit + 4 * Xchange < x < Xinit + 5 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        app(win, "western")
+        app(win, lst,"western")
         return False
     if (Xinit + 5 * Xchange < x < Xinit + 6 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        app(win, "adventure")
+        app(win,lst, "all")
         return False
     if (Xinit < x < Xinit + Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        app(win, "war")
+        app(win, lst,"war")
         return False
     if (Xinit + Xchange < x < Xinit + 2 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        app(win, "crime")
+        app(win, lst,"crime")
         return False
     if (Xinit + 2 * Xchange < x < Xinit + 3 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        app(win, "fantacy")
+        app(win, lst,"fantacy")
         return False
     if (Xinit + 3 * Xchange < x < Xinit + 4 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        app(win, "family")
+        app(win, lst,"family")
         return False
     if (Xinit + 4 * Xchange < x < Xinit + 5 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        app(win, "drama")
+        app(win, lst,"drama")
         return False
     if (Xinit + 5 * Xchange < x < Xinit + 6 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        app(win, "mystery")
+        app(win, lst,"mystery")
         return False
     else:
         pass
@@ -336,9 +346,22 @@ def mouseClick(win, click):
 win = GenreWindow(500, 1000, 0)
 window = win.drawWindow()
 bool = True
+lst = []
 while bool:
     click = window.checkMouse()
     if(click!=None):
-        bool = mouseClick(window, click)
-lst = ["Movie 1","Movie could be this long", "she", "might be this long too", "It works", "baam", "this was fast", "not that hard", "gotta go to django quick", "gotta get done with this ASAP","sfg","asdfsd","asdfs","asdfsd","sdfsd","sdfs","adsfs","asdfs","sadfsa","fdghf","werttwe","ghjfh","asdf","wertew","nmghn","cvbcv","cvcvb"]
-win.drawBlankSheet(lst)
+        bool = mouseClick(window,lst, click)
+window.close()
+
+
+window = win.drawBlankSheet(lst)
+bool2 = True
+while bool2:
+    click2 = window.checkMouse()
+    if(click2 != None):
+        if(click2.getX()>(window.getWidth()-50) and click2.getY()<40):
+            break
+
+#To-Do
+#make sure the all button is at the end of the list
+#create a full list for the all button.
