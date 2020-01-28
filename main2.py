@@ -44,7 +44,7 @@ class GenreWindow:
             #draw a table with 6 columns and 3 rows
             #Write the text in the boxes.
             #make a list of all the words to draw in the boxes.
-            WordList = ["action", "comedy", "adventure","animation","documentary","horror","romance","Sci-fi","music","thriller","western","all","war","crime","fantasy","family","drama","mystery"]
+            WordList = ["action", "comedy", "adventure","animation","documentary","horror","romance","Sci-fi","music","thriller","western","mystery","war","crime","fantasy","family","drama","all"]
             valueControl = 0
             for j in range(3):
                 try:
@@ -181,97 +181,100 @@ def app(win, lst, q):
                             string_genre = str(jsonobj['results'][0]['genre_ids'])
                             x = ''.join(string_genre)
                             #print(x)
-
-                            if '28' in string_genre and q == "action":
+                            if q == "all":
+                                print(j)
+                                lst.append(j)
+                            elif '28' in string_genre and q == "action":
                                 print(j)
                                 lst.append(j)
                                 action.write(j)
                                 action.write("\n")
-                            if '16' in string_genre and q == "animation":
+                            elif '16' in string_genre and q == "animation":
                                 print(j)
                                 lst.append(j)
                                 animation.write(j)
                                 animation.write("\n")
-                            if '99' in string_genre and q == "documentary":
+                            elif '99' in string_genre and q == "documentary":
                                 print(j)
                                 lst.append(j)
                                 documentary.write(j)
                                 documentary.write("\n")
-                            if '18' in string_genre and q == "drama":
+                            elif '18' in string_genre and q == "drama":
                                 print(j)
                                 lst.append(j)
                                 drama.write(j)
                                 drama.write("\n")
-                            if '10751' in string_genre and q == "family":
+                            elif '10751' in string_genre and q == "family":
                                 print(j)
                                 lst.append(j)
                                 family.write(j)
                                 family.write("\n")
-                            if '14' in string_genre and q == "fantasy":
+                            elif '14' in string_genre and q == "fantasy":
                                 print(j)
                                 lst.append(j)
                                 fantasy.write(j)
                                 fantasy.write("\n")
-                            if '36' in string_genre and q == "history":
+                            elif '36' in string_genre and q == "history":
                                 print(j)
                                 lst.append(j)
                                 history.write(j)
                                 history.write("\n")
-                            if '35' in string_genre and q == "comedy":
+                            elif '35' in string_genre and q == "comedy":
                                 print(j)
                                 lst.append(j)
                                 comedy.write(j)
                                 comedy.write("\n")
-                            if '10752' in string_genre and q == "war":
+                            elif '10752' in string_genre and q == "war":
                                 print(j)
                                 lst.append(j)
                                 war.write(j)
                                 war.write("\n")
-                            if '80' in string_genre and q == "crime":
+                            elif '80' in string_genre and q == "crime":
                                 print(j)
                                 lst.append(j)
                                 crime.write(j)
                                 crime.write("\n")
-                            if '10402' in string_genre and q == "music":
+                            elif '10402' in string_genre and q == "music":
                                 print(j)
                                 lst.append(j)
                                 music.write(j)
                                 music.write("\n")
-                            if '9648' in string_genre and q == "mystery":
+                            elif '9648' in string_genre and q == "mystery":
                                 print(j)
                                 lst.append(j)
                                 mystery.write(j)
                                 mystery.write("\n")
-                            if '10749' in string_genre and q == "romance":
+                            elif '10749' in string_genre and q == "romance":
                                 print(j)
                                 lst.append(j)
                                 romance.write(j)
                                 romance.write("\n")
-                            if '878' in string_genre and q == "scifi":
+                            elif '878' in string_genre and q == "scifi":
                                 print(j)
                                 lst.append(j)
                                 scifi.write(j)
                                 scifi.write("\n")
-                            if '27' in string_genre and q == "horror":
+                            elif '27' in string_genre and q == "horror":
                                 print(j)
                                 lst.append(j)
                                 horror.write(j)
                                 horror.write("\n")
-                            if '53' in string_genre and q == "thriller":
+                            elif '53' in string_genre and q == "thriller":
                                 print(j)
                                 lst.append(j)
                                 thriller.write(j)
                                 thriller.write("\n")
-                            if '37' in string_genre and q == "western":
+                            elif '37' in string_genre and q == "western":
                                 print(j)
                                 lst.append(j)
                                 western.write(j)
                                 western.write("\n")
-                            if '12' in string_genre and q == "adventures":
+                            elif '12' in string_genre and q == "adventures":
                                 print(j)
                                 lst.append(j)
                                 adventure.write(j)
                                 adventure.write("\n")
+
                     else:
                         print(j + "is not in the Database")
 
@@ -319,7 +322,7 @@ def mouseClick(win, lst, click):
         app(win, lst,"western")
         return False
     if (Xinit + 5 * Xchange < x < Xinit + 6 * Xchange and Yinit + Ychange < y < Yinit + 2*Ychange):
-        app(win,lst, "all")
+        app(win,lst, "mystery")
         return False
     if (Xinit < x < Xinit + Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
         app(win, lst,"war")
@@ -337,7 +340,7 @@ def mouseClick(win, lst, click):
         app(win, lst,"drama")
         return False
     if (Xinit + 5 * Xchange < x < Xinit + 6 * Xchange and Yinit + 2*Ychange < y < Yinit + 3*Ychange):
-        app(win, lst,"mystery")
+        app(win, lst,"all")
         return False
     else:
         pass
@@ -363,5 +366,3 @@ while bool2:
             break
 
 #To-Do
-#make sure the all button is at the end of the list
-#create a full list for the all button.
